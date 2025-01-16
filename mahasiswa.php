@@ -1,4 +1,5 @@
 <?php
+     
 
     $mysqli = new mysqli('localhost', 'root', '', 'mahasiswa');
     $result = $mysqli->query("SELECT siswa.NIM, siswa.NAMA, program_studi.Prodi
@@ -32,7 +33,11 @@
 </head>
 <body>
     <div class="container"> 
-    <h1 class="text-center">Data siswa KA 2021</h1>   
+    <h1 class="text-center">Data siswa KA 2021</h1> 
+    
+    <a href="Tambah_mahasiswa.php" class="btn btn-primary">Tambah</a>
+ 
+
     <table class="table table-bordered table-hover">
         <tr>
             <th class="text-center">Nomor</th>
@@ -47,10 +52,17 @@
                 <td><?= $row['NIM']; ?></td>
                 <td><?= $row['NAMA']; ?></td>
                 <td><?= $row['Prodi']; ?></td>   
-        </tr>
-        <?php } ?>
+                <td> 
+                    <a href="edit_mahasiswa.php?nim=<?= $row['NIM']?>" class="btn btn-success">Edit</a>
+                    <a href="hapus_mahasiswa.php?nim=<?= $row['NIM']?>" class="btn btn-danger"
+                        onclick="return confirm('Apakah Anda Yakin akan menghapus data ini?');">Hapus</a>
+                </td>
+            </tr>
+    <?php } ?>
     </table>  
     </div>  
 </body>
 </html>
+
+
 
