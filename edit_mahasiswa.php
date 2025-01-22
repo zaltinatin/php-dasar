@@ -1,4 +1,5 @@
 <?php
+session_start();
       
     $mysqli = new mysqli('localhost', 'root', '', 'mahasiswa');
     $NIM = $_GET['nim'];
@@ -17,6 +18,8 @@
         $update = $mysqli->query("UPDATE siswa SET NAMA='$nama', ID=$program_studi WHERE NIM='$NIM'");
 
         if($update) {
+            $_SESSION['success'] = true;
+            $_SESSION['message'] = 'Data Berhasil Di Ubah';
            
             header("Location: mahasiswa.php");
             exit();
