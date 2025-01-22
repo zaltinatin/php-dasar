@@ -1,7 +1,11 @@
 <?php
 session_start();
-
-     
+    if (!isset($_SESSION['login'])) {
+        if($_SESSION['login'] != true) {
+            header("Location: login.php");
+            exit;
+        }
+    }
 
     $mysqli = new mysqli('localhost', 'root', '', 'mahasiswa');
     $result = $mysqli->query("SELECT siswa.NIM, siswa.NAMA, program_studi.Prodi
@@ -42,8 +46,7 @@ session_start();
     </div>
     <?php } ?>
     <a href="Tambah_mahasiswa.php" class="btn btn-primary">Tambah</a>
- 
-
+    <a href="logout.php" class="btn btn-warning">Logout</a>
     <table class="table table-bordered table-hover">
         <tr>
             <th class="text-center">Nomor</th>
